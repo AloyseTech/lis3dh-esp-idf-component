@@ -1,0 +1,37 @@
+menu "LIS3DH Component Config"
+    choice LIS3DH_INTERFACE_MODE
+        prompt "Select LIS3DH interface (I2C or SPI)"
+        default LIS3DH_INTERFACE_I2C
+
+        config LIS3DH_INTERFACE_I2C
+            bool "I2C"
+        config LIS3DH_INTERFACE_SPI
+            bool "SPI"
+    endchoice
+
+    config LIS3DH_I2C_ADDRESS
+        hex "LIS3DH Device I2C address (hex, 7bit)"
+        default 0x18
+        depends on LIS3DH_INTERFACE_I2C
+
+    config LIS3DH_I2C_PERIPH_NUM
+        int "I2C Peripheral number"
+        default 1
+        depends on LIS3DH_INTERFACE_I2C
+
+    config LIS3DH_I2C_SDA_PIN
+        int "I2C SDA GPIO pin number"
+        default 25
+        depends on LIS3DH_INTERFACE_I2C
+    
+    config LIS3DH_I2C_SCL_PIN
+        int "I2C SCL GPIO pin number"
+        default 26
+        depends on LIS3DH_INTERFACE_I2C
+
+    config LIS3DH_I2C_SPEED
+        int "I2C clock frequency"
+        default 400000
+        depends on LIS3DH_INTERFACE_I2C
+
+endmenu
